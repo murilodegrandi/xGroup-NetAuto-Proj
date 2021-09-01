@@ -32,3 +32,18 @@ print(outputR1)
 net_connect = ConnectHandler(**R2)
 outputR2 = net_connect.send_config_set(R2NET)
 print(outputR2)
+
+
+#Markdown message
+import requests
+access_token = 'MThlNTc2MzUtNGRkNy00YThhLThlNTgtZGQwN2YyNmRmZjk1ZWU4ZWNlNGQtZDBh_P0A1_449e6dbf-9e56-4a02-b469-235f2959d30d'
+room_id = 'Y2lzY29zcGFyazovL3VybjpURUFNOnVzLXdlc3QtMl9yL1JPT00vZTUyNWIyNzAtZmY1OC0xMWViLTljYjAtYmRjNWY1Yzk2Mzkx'
+message = 'Hello **xGroup Team**!! \n The OSPF configuration have been updated on R1 and R2 devices.'
+url = 'https://webexapis.com/v1/messages'
+headers = {
+ 'Authorization': 'Bearer {}'.format(access_token),
+ 'Content-Type': 'application/json'
+}
+params = {'roomId': room_id, 'markdown': message}
+res = requests.post(url, headers=headers, json=params)
+print(res.json())
