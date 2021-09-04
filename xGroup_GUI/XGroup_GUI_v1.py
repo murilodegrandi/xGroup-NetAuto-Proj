@@ -3,6 +3,7 @@ from PIL import Image, ImageTk
 
 
 root = tk.Tk()
+root.title("xGroup Network Automation Tool")
 
 canvas = tk.Canvas(root, width=600, height=300)
 canvas.grid(columnspan=3, rowspan=3)
