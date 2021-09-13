@@ -4,14 +4,14 @@ from netmiko import ConnectHandler
 
 R1 = {
     'device_type': 'cisco_ios',
-    'ip': '192.168.1.108',
+    'ip': '192.168.1.102',
     'username': 'admin',
     'password': 'xgroup1',
 }
 
 R2 = {
     'device_type': 'cisco_ios',
-    'ip': '192.168.1.107',
+    'ip': '192.168.1.101',
     'username': 'admin',
     'password': 'xgroup1',
 }
@@ -33,10 +33,10 @@ net_connect = ConnectHandler(**R2)
 outputR2 = net_connect.send_config_set(R2NET)
 print(outputR2)
 
-
+"""
 #Markdown message
 import requests
-access_token = 'MThlNTc2MzUtNGRkNy00YThhLThlNTgtZGQwN2YyNmRmZjk1ZWU4ZWNlNGQtZDBh_P0A1_449e6dbf-9e56-4a02-b469-235f2959d30d'
+access_token = 'MzJmMjk2OTAtZGQwOC00NDkzLWJmODEtMmViZTVjZDRlNWYwM2Q4MWQxYjUtYWFl_P0A1_4524b9d6-104d-4af3-9067-7d3921fc14da'
 room_id = 'bfcc5ae0-f41a-11eb-9094-4d9b22f98f5e'
 message = 'Hello **xGroup Team**!! \n The OSPF configuration have been updated on R1 and R2 devices.'
 url = 'https://webexapis.com/v1/messages'
@@ -47,3 +47,5 @@ headers = {
 params = {'roomId': room_id, 'markdown': message}
 res = requests.post(url, headers=headers, json=params)
 print(res.json())
+
+"""
