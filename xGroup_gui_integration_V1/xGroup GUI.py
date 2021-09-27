@@ -49,5 +49,9 @@ button = tk.Button(root, textvariable=OSPF_conf, font='Raleway', bg='#3399FF', f
 OSPF_conf.set('Show IP Route')
 button.grid(column=1, row=6)
 
+#Show configurations
+e = tk.Text(root, height=15, width=60, borderwidth=5)
+e.grid(row=7, column=1, padx=10, pady=10)
+
 root.mainloop()
 
