@@ -1,11 +1,11 @@
 import main
 import requests
 
+# This function loads device information and send show command to verify show running config.
 def sh_run():
     devices = main.inventory()  # load devices
 
-    # load device information and send show command.
-    for device in devices:
+    for device in devices: # send show command
         for i in devices[device]:
             show = main.functions(i, ["show run"])
             show.send_show_command()
@@ -24,12 +24,13 @@ def sh_run():
     res = requests.post(url, headers=headers, json=params)
     print(res.json())
 
+########################################################################################################################
+# This function loads device information and send show commands to verify OSPF
 
 def sh_ospf():
     devices = main.inventory()  # load devices
 
-    # load device information and send show command.
-    for device in devices:
+    for device in devices: # send show commands
         for i in devices[device]:
             show = main.functions(i, ["show ip ospf database", "show ip ospf neighbor"])
             show.send_show_command()
@@ -48,11 +49,12 @@ def sh_ospf():
     res = requests.post(url, headers=headers, json=params)
     print(res.json())
 
+########################################################################################################################
+# This function loads device information and send configuration for OSPF
 
 def ospf_conf():
-    devices = main.inventory()  # load devices
-
-    for device in devices['R1']:
+    devices = main.inventory()
+    for device in devices['R1']: # configure OSPF on R1
         R1 = device
         commands = ["router ospf 2", "router-id 1.1.1.1", "network 192.168.2.0 0.0.0.255 area 0",
             "network 192.168.3.0 0.0.0.255 area 0", "network 192.168.255.255 255.255.255.255 area 0",
@@ -61,7 +63,7 @@ def ospf_conf():
         config = main.functions(R1, commands)
         config.send_config()
 
-    for device in devices['R2']:
+    for device in devices['R2']: # configure OSPF on R2
         R2 = device
         commands = ["router ospf 2", "router-id 2.2.2.2", "network 192.168.2.0 0.0.0.255 area 0"
             , "network 192.168.4.0 0.0.0.255 area 0", "exit", "int gig2", "ip ospf authentication"
@@ -82,6 +84,8 @@ def ospf_conf():
     res = requests.post(url, headers=headers, json=params)
     print(res.json())
 
+########################################################################################################################
+#This function loads device information and send configuration for NTP
 
 def ntp_conf():
     devices = main.inventory()  # load devices
@@ -111,12 +115,14 @@ def ntp_conf():
     res = requests.post(url, headers=headers, json=params)
     print(res.json())
 
+########################################################################################################################
+#This function loads device information and send show command to verify the routing tables.
 
 def sh_routes():
     devices = main.inventory()  # load devices
 
-    # load device information and send show command.
-    for device in devices:
+
+    for device in devices: # load device information and send show command.
         for i in devices[device]:
             show = main.functions(i, ["show ip route"])
             show.send_show_command()
@@ -137,10 +143,13 @@ def sh_routes():
 
 ################################ below are NEW FUNCTIONS TO BE ADDED to GUI######################################
 
+########################################################################################################################
+#This function loads device information and send configuration to create a new interface.
+
 def interf_conf():
     devices = main.inventory()  # load devices
 
-    for device in devices['R1']:  # configure R1 as NTP Server
+    for device in devices['R1']: #create new interface on R1
         R1 = device
         commands = ["interface loopback 0", "description This interface stays always UP for the NTP server.",
         "ip address 192.168.255.255 255.255.255.255"
@@ -161,11 +170,13 @@ def interf_conf():
     res = requests.post(url, headers=headers, json=params)
     print(res.json())
 
-def sh_time():
-    devices = main.inventory()  # load devices
+########################################################################################################################
+# This function loads device information and send show command to verify the Time synchronization.
 
-    # load device information and send show command.
-    for device in devices:
+def sh_time(): # load devices
+    devices = main.inventory()
+
+    for device in devices: # load device information and send show command.
         for i in devices[device]:
             show = main.functions(i, ["show clock"])
             show.send_show_command()
@@ -183,4 +194,3 @@ def sh_time():
     params = {'roomId': room_id, 'markdown': message}
     res = requests.post(url, headers=headers, json=params)
     print(res.json())
-
