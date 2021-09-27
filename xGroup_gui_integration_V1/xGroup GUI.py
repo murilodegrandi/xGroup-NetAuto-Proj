@@ -2,9 +2,6 @@ import tkinter as tk
 from PIL import Image, ImageTk
 import Automation_functions
 #import main
-#import yaml
-
-
 
 root = tk.Tk()
 root.title("xGroup Network Automation Tool")
