@@ -41,17 +41,26 @@ button = tk.Button(root, textvariable=OSPF_conf, font='Raleway', bg='#3399FF', f
 OSPF_conf.set('OSPF Configuration')
 button.grid(column=1, row=5)
 
-OSPF_conf = tk.StringVar()
-button = tk.Button(root, textvariable=OSPF_conf, font='Raleway', bg='#3399FF', fg='white', height=2, width=35, command=lambda:Automation_functions.sh_routes())
-OSPF_conf.set('Show IP Route')
+sh_ip_Route = tk.StringVar()
+button = tk.Button(root, textvariable=sh_ip_Route, font='Raleway', bg='#3399FF', fg='white', height=2, width=35, command=lambda:Automation_functions.sh_routes())
+sh_ip_Route.set('Show IP Route')
 button.grid(column=1, row=6)
+
+int_conf = tk.StringVar()
+button = tk.Button(root, textvariable=int_conf, font='Raleway', bg='#3399FF', fg='white', height=2, width=35, command=lambda:Automation_functions.interf_conf())
+int_conf.set('Create Interface')
+button.grid(column=1, row=7)
+
+sh_Time = tk.StringVar()
+button = tk.Button(root, textvariable=sh_Time, font='Raleway', bg='#3399FF', fg='white', height=2, width=35, command=lambda:Automation_functions.sh_time())
+sh_Time.set('Show Time')
+button.grid(column=1, row=8)
+
 
 #Show configurations
 e = tk.Text(root, height=15, width=60, borderwidth=5)
-e.grid(row=7, column=1, padx=10, pady=10)
+e.grid(row=9, column=1, padx=10, pady=10)
 
-e = tk.Text(root, height=15, width=60, borderwidth=5)
-e.grid(row=7, column=1, padx=10, pady=10)
 
 root.mainloop()
 
