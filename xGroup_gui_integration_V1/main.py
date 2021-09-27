@@ -1,3 +1,4 @@
+import datetime
 import yaml
 from netmiko import (
     ConnectHandler,
@@ -17,6 +18,10 @@ class functions:
                 for command in self.commands:
                     output = ssh.send_command(command)
                     print(output)
+                    t = datetime.datetime.now().strftime("%d.%m.%Y - %H;%M;%S")
+                    file = open("Show_command" + str(t) + ".txt", "w")
+                    file.write(output)
+                    file.close()
             return output
         except (NetmikoTimeoutException, NetmikoAuthenticationException) as error:
             print(error)
@@ -27,6 +32,10 @@ class functions:
                 ssh.enable()
                 output = ssh.send_config_set(self.commands)
                 print(output)
+                t = datetime.datetime.now().strftime("%d.%m.%Y - %H;%M;%S")
+                file = open("config_command" + str(t) + ".txt", "w")
+                file.write(output)
+                file.close()
             return output
         except (NetmikoTimeoutException, NetmikoAuthenticationException) as error:
             print(error)

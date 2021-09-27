@@ -50,5 +50,8 @@ button.grid(column=1, row=6)
 e = tk.Text(root, height=15, width=60, borderwidth=5)
 e.grid(row=7, column=1, padx=10, pady=10)
 
+e = tk.Text(root, height=15, width=60, borderwidth=5)
+e.grid(row=7, column=1, padx=10, pady=10)
+
 root.mainloop()
 
