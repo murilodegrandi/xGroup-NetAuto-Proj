@@ -10,7 +10,7 @@ canvas = tk.Canvas(root, width=600, height=300)
 canvas.grid(columnspan=3, rowspan=3)
 
 #logo
-logo = Image.open('x1.png')
+logo = Image.open('xGroup logo.png')
 logo = ImageTk.PhotoImage(logo)
 logo_label = tk.Label(image=logo)
 logo_label.image = logo
