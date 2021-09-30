@@ -3,6 +3,7 @@ from tkinter import messagebox
 import Automation_functions
 
 #from sys import exit
+
 w = Tk()
 w.geometry('700x500')
 w.title('X-Group LOGIN ACCES')
@@ -35,7 +36,7 @@ l = ('consoles', 15)
 l2.config(font=l)
 l2.place(x=80, y=280)
 
-e2 = Entry(w, width=20, border=0)
+e2 = Entry(w, width=20, border=0, show='*')
 e2.config(font=l)
 e2.place(x=80, y=310)
 
@@ -51,7 +52,6 @@ label1.place(x=350, y=120)
 
 
 def cmd():
-
     if e1.get() == 'admin' and e2.get() == 'xgroup1':
         messagebox.showinfo('SUCCESFULL LOGIN ', 'WELCOME TO XGROUP')
 
