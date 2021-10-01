@@ -58,9 +58,11 @@ button.grid(column=1, row=8)
 
 
 #Show configurations
+
+
 e = tk.Text(root, height=15, width=60, borderwidth=5)
 e.grid(row=9, column=1, padx=10, pady=10)
-
+e.insert(tk.END, 'THIS IS PRINTING FROM THE GUI CODE BUT WE NEED TO PRINT THE OUTPUT OF DEVICES JESUS CHIRST')
 
 root.mainloop()
 
