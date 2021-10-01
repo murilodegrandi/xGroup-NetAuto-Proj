@@ -21,14 +21,14 @@ instructions.grid(columnspan=3, column=0, row=1)
 #Building buttons
 
 
-runConf = tk.StringVar()
-button = tk.Button(root, textvariable=runConf, font='Raleway', bg='#3399FF', fg='white', height=2, width=35)
-runConf.set('Router 1')
+R1 = tk.StringVar()
+button = tk.Button(root, textvariable=R1, font='Raleway', bg='#3399FF', fg='white', height=2, width=35)
+R1.set('Router 1')
 button.grid(column=1, row=2)
 
-show_OSPF = tk.StringVar()
-button = tk.Button(root, textvariable=show_OSPF, font='Raleway', bg='#3399FF', fg='white', height=2, width=35)
-show_OSPF.set('Router 2')
+R2 = tk.StringVar()
+button = tk.Button(root, textvariable=R2, font='Raleway', bg='#3399FF', fg='white', height=2, width=35)
+R2.set('Router 2')
 button.grid(column=1, row=3)
 
 root.mainloop()
