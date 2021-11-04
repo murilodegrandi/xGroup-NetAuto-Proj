@@ -18,11 +18,12 @@ class functions:
                 ssh.enable()
                 for command in self.commands:
                     output = ssh.send_command(command)
-                    #print(output)
                     t = datetime.datetime.now().strftime("%d.%m.%Y - %H;%M;%S")
                     with open("show_" + str(t) + ".txt", "w") as file:
                         file.write(output)
-            os.startfile("C:\\Users\\muril\\PycharmProjects\\Network Automation\\xGroup\\xGroup_gui_integration_V1\\" + file.name)
+            path = os.getcwd()
+            os.startfile(path + "\\" + file.name)
+
             return output
         except (NetmikoTimeoutException, NetmikoAuthenticationException) as error:
             print(error)
@@ -32,11 +33,11 @@ class functions:
             with ConnectHandler(**self.device) as ssh:
                 ssh.enable()
                 output = ssh.send_config_set(self.commands)
-                #print(output)
                 t = datetime.datetime.now().strftime("%d.%m.%Y - %H;%M;%S")
                 with open("config_" + str(t) + ".txt", "w") as file:
                     file.write(output)
-            os.startfile("C:\\Users\\muril\\PycharmProjects\\Network Automation\\xGroup\\xGroup_gui_integration_V1\\" + file.name)
+            path = os.getcwd()
+            os.startfile(path + "\\" + file.name)
             return output
 
         except (NetmikoTimeoutException, NetmikoAuthenticationException) as error:
