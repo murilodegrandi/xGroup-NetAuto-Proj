@@ -1,0 +1,121 @@
+!R1
+
+!!!Apply basic config
+conf t
+hostname R1
+line console 0
+exec-timeout 0 0
+logging synchronous
+exit
+exit
+!!!Add user admin
+conf t
+username admin privilege 15 secret xgroup1
+exit
+!!!configure link to ISP1
+conf t
+int g1
+description Link to ISP1
+ip address dhcp
+no shut
+exit
+exit
+!Create a default route
+conf t
+ip route 0.0.0.0 0.0.0.0 192.168.1.1 (your computer default-gateway)
+exit
+!!!configure link to R2
+conf t
+int g2
+description Link to R2
+ip address 192.168.2.1 255.255.255.0
+description Link to R2
+no shut
+!!! configure link to LAN-1
+int g3
+ip address 192.168.3.1 255.255.255.0
+description Link to LAN-1
+no shut
+exit
+exit
+!!! Enable RESTCONF - to verify (show software yang-management proccess) 
+conf t
+restconf
+exit
+!!!Enable HTTP service
+conf t
+ip http secure-server
+ip http authentication local
+exit
+!!! Configure SSH
+conf t
+ip domain-name xgroup
+crypto key generate rsa
+1024
+line vty 0 4
+transport input ssh
+login local
+exit
+
+
+
+
+!R2
+
+!!!Apply basic config
+conf t
+hostname R2
+line console 0
+exec-timeout 0 0
+logging synchronous
+exit
+exit
+!!!Add user admin
+conf t
+username admin privilege 15 secret xgroup1
+exit
+!!!configure link to ISP2
+conf t
+int g1
+description Link to ISP2
+ip address dhcp
+no shut
+exit
+exit
+!!!configure link to R1
+conf t
+int g2
+description Link to R1
+ip address 192.168.2.2 255.255.255.0
+description Link to R1
+no shut
+exit
+exit
+!!! configure link to LAN-2
+int g3
+ip address 192.168.4.1 255.255.255.0
+description Link to LAN-2
+no shut
+exit
+exit
+!Create a default route
+ip route 0.0.0.0 0.0.0.0 192.168.1.1
+!!! Enable RESTCONF - to verify (show software yang-management proccess) 
+conf t
+restconf
+exit
+!!!Enable HTTP service
+conf t
+ip http secure-server
+ip http authentication local
+exit
+!!! Configure SSH
+conf t
+ip domain-name xgroup
+crypto key generate rsa
+1024
+line vty 0 4
+transport input ssh
+login local
+exit
+
